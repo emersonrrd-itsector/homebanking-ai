@@ -21,7 +21,7 @@ export default defineConfig({
 
   webServer: [
     {
-      command: 'cd ../../src/api/HomeBanking.Api && dotnet run --no-build',
+      command: 'cd ../../src/api/HomeBanking.Api && dotnet run --no-build --urls "http://localhost:5000"',
       url: 'http://localhost:5000/health',
       reuseExistingServer: !process.env.CI,
       timeout: 120 * 1000,
