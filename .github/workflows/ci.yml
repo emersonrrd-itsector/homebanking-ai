@@ -83,6 +83,12 @@ jobs:
         with:
           node-version: '20'
       
+      - name: Restore API dependencies
+        run: dotnet restore src/api/HomeBanking.Api/HomeBanking.Api.csproj
+      
+      - name: Build API
+        run: dotnet build src/api/HomeBanking.Api/HomeBanking.Api.csproj --no-restore
+      
       - name: Install frontend dependencies
         working-directory: src/web
         run: npm ci
