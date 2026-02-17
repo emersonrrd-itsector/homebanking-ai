@@ -7,17 +7,17 @@ test.describe('Home Banking Dashboard', () => {
     // Check page title
     await expect(page.locator('h1')).toContainText('Home Banking');
 
-    // Check accounts section exists
-    await expect(page.getByText('Your Accounts')).toBeVisible();
+    // Check accounts section exists - use more specific selector
+    await expect(page.getByRole('heading', { name: 'Your Accounts' })).toBeVisible();
 
     // Wait for accounts to load and verify we have 3 accounts
-    await page.waitForSelector('[class*="AccountCard"]', { timeout: 10000 });
-    const accountCards = page.locator('[class*="AccountCard"]');
+    await page.waitForSelector('[data-testid="account-card"]', { timeout: 10000 });
+    const accountCards = page.getByTestId('account-card');
     await expect(accountCards).toHaveCount(3);
 
-    // Verify account details are visible
-    await expect(page.getByText('John Smith')).toBeVisible();
-    await expect(page.getByText('ACC-1001')).toBeVisible();
+    // Verify account details are visible - use more specific selectors
+    await expect(page.getByRole('heading', { name: 'John Smith' })).toBeVisible();
+    await expect(page.getByText('ACC-1001').first()).toBeVisible();
 
     // Check transactions section exists
     await expect(page.getByText('Recent Transactions')).toBeVisible();

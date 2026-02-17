@@ -23,9 +23,9 @@ test.describe('Transactions List', () => {
     const descCell = firstRow.locator('td').nth(1);
     await expect(descCell).not.toBeEmpty();
 
-    // Category badge should be visible
+    // Category badge should be visible - use data-testid
     const categoryCell = firstRow.locator('td').nth(2);
-    const badge = categoryCell.locator('[class*="badge"]');
+    const badge = categoryCell.getByTestId('category-badge');
     await expect(badge).toBeVisible();
 
     // Type should be visible
@@ -43,8 +43,8 @@ test.describe('Transactions List', () => {
     // Wait for transactions
     await page.waitForSelector('tbody tr', { timeout: 10000 });
 
-    // Check that category badges exist
-    const badges = page.locator('[class*="badge"]');
+    // Check that category badges exist - use data-testid
+    const badges = page.getByTestId('category-badge');
     const badgeCount = await badges.count();
     expect(badgeCount).toBeGreaterThan(0);
 

@@ -7,7 +7,7 @@ interface AccountCardProps {
 
 export function AccountCard({ account }: AccountCardProps) {
   return (
-    <Card>
+    <Card data-testid="account-card">
       <CardHeader>
         <CardTitle className="text-lg">{account.accountHolder}</CardTitle>
         <p className="text-sm text-muted-foreground">{account.accountNumber}</p>
